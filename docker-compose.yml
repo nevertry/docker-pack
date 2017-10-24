@@ -280,7 +280,7 @@ services:
     postgres:
       build: ./postgres
       volumes:
-        - ${DATA_SAVE_PATH}/postgres:/var/lib/postgresql/data
+        - postgres-data-volume:/var/lib/postgresql/data
       ports:
         - "${POSTGRES_PORT}:5432"
       environment:
@@ -295,7 +295,7 @@ services:
     postgres-postgis:
       build: ./postgres-postgis
       volumes:
-        - ${DATA_SAVE_PATH}/postgres:/var/lib/postgresql/data
+        - postgres-data-volume:/var/lib/postgresql/data
       ports:
         - "${POSTGRES_PORT}:5432"
       environment:
@@ -708,3 +708,5 @@ volumes:
     driver: "local"
   elasticsearch-plugins:
     driver: "local"
+  postgres-data-volume:
+    external: true
